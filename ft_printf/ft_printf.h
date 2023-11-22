@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:32:18 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/22 11:32:20 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:45:51 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include "./libft/libft.h"
+# include "/libft/libft.h"
+
 #endif
