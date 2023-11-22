@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:19:11 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/22 14:23:53 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:44:09 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,32 @@ int	ft_putnbr(int n)
 	if (n / 10)
 	{
 		length += 1;
-		ft_putnbr_fd(num / 10, fd);
+		ft_putnbr(num / 10);
 	}
 	digit = '0' + (num % 10);
 	write(1, &digit, 1);
 	return (length);
 }
 
+int	ft_putstr(char *string)
+{
+	int	i;
+
+	i = 0;
+	while (string[i])
+	{
+		i += ft_putchar(string[i]);
+	}
+	return (i);
+}
+
 int	my_formats(va_list args, const char format)
 {
 	if (format == 'd' || format == 'i')
 		return (ft_putnbr(va_arg(args, int)));
+	else if (format == 's')
+		return (ft_putstr(va_arg(args, char *)));
+	return (0);
 }
 
 int	ft_printf(const char *str, ...)

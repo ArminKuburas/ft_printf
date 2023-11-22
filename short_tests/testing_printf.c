@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   testing_printf.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/22 17:40:26 by akuburas          #+#    #+#             */
+/*   Updated: 2023/11/22 17:41:51 by akuburas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
@@ -38,10 +50,24 @@ int	ft_putnbr(int n)
 	return (length);
 }
 
+int	ft_putstr(char *string)
+{
+	int	i;
+
+	i = 0;
+	while (string[i])
+	{
+		i += ft_putchar(string[i]);
+	}
+	return (i);
+}
+
 int	my_formats(va_list args, const char format)
 {
 	if (format == 'd' || format == 'i')
 		return (ft_putnbr(va_arg(args, int)));
+	else if (format == 's')
+		return (ft_putstr(va_arg(args, char *)));
 	return (0);
 }
 
@@ -71,7 +97,8 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	ft_printf("%d\n", ft_printf(""));
-	printf("%d\n", ft_printf(""));
+	char *string = "Hello";
+	ft_printf("mine: %s\n", string);
+	printf("original: %s\n", string);
 	return (0);
 }
