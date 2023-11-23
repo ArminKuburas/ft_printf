@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:40:26 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/22 17:41:51 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:37:16 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	ft_putstr(char *string)
 	}
 	return (i);
 }
+int	
 
 int	my_formats(va_list args, const char format)
 {
@@ -93,6 +94,12 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(args);
 	return (print_length);
+}
+static void ft_puthex(uintptr_t n)
+{
+	const char	*hex_digits;
+
+	hex_digits = "0123456789abcdef";
 }
 
 int	main(void)
