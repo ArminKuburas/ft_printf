@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:40:26 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/23 16:37:16 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:38:58 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,19 @@ int	ft_putstr(char *string)
 	}
 	return (i);
 }
-int	
+
+static int	ft_puthex(uintptr_t n)
+{
+	const char	*hex_digits;
+	int			length;
+
+	hex_digits = "0123456789abcdef";
+	length = 0;
+	if (n >= 16)
+		ft_puthex(n / 16);
+	length += ft_putchar(hex_digits[n % 16]);
+	return (length);
+}
 
 int	my_formats(va_list args, const char format)
 {
@@ -69,6 +81,8 @@ int	my_formats(va_list args, const char format)
 		return (ft_putnbr(va_arg(args, int)));
 	else if (format == 's')
 		return (ft_putstr(va_arg(args, char *)));
+	else if (format == 'p')
+		return (ft_putstr("0x") + ft_puthex((uintptr_t)ptr));
 	return (0);
 }
 
@@ -95,17 +109,11 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (print_length);
 }
-static void ft_puthex(uintptr_t n)
-{
-	const char	*hex_digits;
-
-	hex_digits = "0123456789abcdef";
-}
 
 int	main(void)
 {
-	char *string = "Hello";
-	ft_printf("mine: %s\n", string);
-	printf("original: %s\n", string);
+	void *empty;
+	ft_printf("mine: %p\n", empty);
+	printf("original: %p\n", empty);
 	return (0);
 }
