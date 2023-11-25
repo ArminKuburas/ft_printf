@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testing_printf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas%student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:40:26 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/24 15:38:58 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/25 21:27:37 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 #include <unistd.h>
 #include <limits.h>
 
+typedef unsigned long	t_ul;
+
 int	ft_putchar(char c)
 {
-	write (1, &c, 1);
+	write(1, &c, 1);
 	return (1);
 }
 
-int	ft_putnbr(int n)
+int	ft_putnbr(int n, int *length)
 {
 	char	digit;
 	long	num;
-	int		length;
 
 	num = (long)n;
-	length = 0;
 	if (n == 0)
 	{
 		write(1, "0", 1);
@@ -38,16 +38,15 @@ int	ft_putnbr(int n)
 	{
 		write(1, "-", 1);
 		num = -num;
-		length += 1;
+		(*length) += 1;
 	}
 	if (n / 10)
 	{
-		length += 1;
-		ft_putnbr(num / 10);
+		ft_putnbr(num / 10, length);
 	}
 	digit = '0' + (num % 10);
-	write(1, &digit, 1);
-	return (length);
+	(*length) += ft_putchar(digit);
+	return (*length);
 }
 
 int	ft_putstr(char *string)
@@ -62,27 +61,60 @@ int	ft_putstr(char *string)
 	return (i);
 }
 
-static int	ft_puthex(uintptr_t n)
+static int	ft_ptrhex(t_ul ptr, int *length)
 {
 	const char	*hex_digits;
-	int			length;
 
 	hex_digits = "0123456789abcdef";
-	length = 0;
-	if (n >= 16)
-		ft_puthex(n / 16);
-	length += ft_putchar(hex_digits[n % 16]);
-	return (length);
+	if (ptr >= 16)
+	{
+		ft_ptrhex(ptr / 16, length);
+	}
+	(*length)++;
+	ft_putchar(hex_digits[ptr % 16]);
+	return (*length);
+}
+
+static int	ft_puthex(unsigned int nbr, int uppercase, int *length)
+{
+	const char	*hex_digits;
+
+	if (nbr == 0)
+	{
+		ft_putchar('0');
+		return (1);
+	}
+	if (uppercase == 0)
+		hex_digits = "0123456789abcdef";
+	else if (uppercase == 1)
+		hex_digits = "0123456789ABCDEF";
+	if (nbr >= 16)
+	{
+		ft_puthex(nbr / 16, uppercase, length);
+	}
+	(*length)++;
+	ft_putchar(hex_digits[nbr % 16]);
+	return (*length);
 }
 
 int	my_formats(va_list args, const char format)
 {
+	int	length;
+
+	length = 0;
 	if (format == 'd' || format == 'i')
-		return (ft_putnbr(va_arg(args, int)));
+		return (ft_putnbr(va_arg(args, int), &length));
 	else if (format == 's')
 		return (ft_putstr(va_arg(args, char *)));
 	else if (format == 'p')
-		return (ft_putstr("0x") + ft_puthex((uintptr_t)ptr));
+	{
+		ft_putstr("0x");
+		return (2 + ft_ptrhex((t_ul)va_arg(args, void *), &length));
+	}
+	else if (format == 'x')
+		return (ft_puthex(va_arg(args, unsigned int), 0, &length));
+	else if (format == 'X')
+		return (ft_puthex(va_arg(args, unsigned int), 1, &length));
 	return (0);
 }
 
@@ -113,7 +145,11 @@ int	ft_printf(const char *str, ...)
 int	main(void)
 {
 	void *empty;
-	ft_printf("mine: %p\n", empty);
-	printf("original: %p\n", empty);
+	unsigned int	digit = 1000;
+
+	ft_printf("%p\n", empty);
+	printf("%p\n", empty);
+	ft_printf("%d\n", ft_printf("%p\n", empty));
+	printf("%d\n", printf("%p\n", empty));
 	return (0);
 }
