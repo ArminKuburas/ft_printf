@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_put_unsigned_nbr.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 13:23:43 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 13:59:46 by akuburas         ###   ########.fr       */
+/*   Created: 2023/11/26 13:24:24 by akuburas          #+#    #+#             */
+/*   Updated: 2023/11/26 14:06:33 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_putnbr(int n, int *length)
+#include "ft_printf.h"
+
+int	ft_put_u_nbr(unsigned int n, int *length)
 {
 	char	digit;
-	long	num;
 
-	num = (long)n;
 	if (n == 0)
 	{
 		write(1, "0", 1);
 		return (1);
 	}
-	if (num < 0)
-	{
-		write(1, "-", 1);
-		num = -num;
-		(*length) += 1;
-	}
 	if (n / 10)
 	{
-		ft_putnbr(num / 10, length);
+		ft_put_u_nbr(n / 10, length);
 	}
-	digit = '0' + (num % 10);
+	digit = '0' + (n % 10);
 	(*length) += ft_putchar(digit);
 	return (*length);
 }

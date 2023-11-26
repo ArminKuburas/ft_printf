@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptrhex.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 13:41:02 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 13:46:17 by akuburas         ###   ########.fr       */
+/*   Created: 2023/11/26 13:23:43 by akuburas          #+#    #+#             */
+/*   Updated: 2023/11/26 14:38:19 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_ptrhex(unsigned long ptr, int *length)
-{
-	const char	*hex_digits;
+#include "ft_printf.h"
 
-	hex_digits = "0123456789abcdef";
-	if (ptr >= 16)
+int	ft_putnbr(int n, int *length)
+{
+	char	digit;
+	long	num;
+
+	num = (long)n;
+	if (n == 0)
 	{
-		ft_ptrhex(ptr / 16, length);
+		write(1, "0", 1);
+		return (1);
 	}
-	(*length)++;
-	ft_putchar(hex_digits[ptr % 16]);
+	if (num < 0)
+	{
+		write(1, "-", 1);
+		num = -num;
+		(*length) += 1;
+	}
+	if (n / 10)
+	{
+		ft_putnbr(num / 10, length);
+	}
+	digit = '0' + (num % 10);
+	(*length) += ft_putchar(digit);
 	return (*length);
 }

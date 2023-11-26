@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 13:45:24 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 13:58:20 by akuburas         ###   ########.fr       */
+/*   Created: 2023/11/26 13:25:09 by akuburas          #+#    #+#             */
+/*   Updated: 2023/11/26 14:37:07 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_puthex(unsigned int nbr, int uppercase, int *length)
-{
-	const char	*hex_digits;
+#include "ft_printf.h"
 
-	if (nbr == 0)
+int	ft_putstr(char *string)
+{
+	int	i;
+
+	i = 0;
+	while (string[i])
 	{
-		ft_putchar('0');
-		return (1);
+		i += ft_putchar(string[i]);
 	}
-	if (uppercase == 0)
-		hex_digits = "0123456789abcdef";
-	else if (uppercase == 1)
-		hex_digits = "0123456789ABCDEF";
-	if (nbr >= 16)
-	{
-		ft_puthex(nbr / 16, uppercase, length);
-	}
-	(*length)++;
-	ft_putchar(hex_digits[nbr % 16]);
-	return (*length);
+	return (i);
 }

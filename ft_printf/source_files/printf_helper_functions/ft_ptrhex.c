@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_ptrhex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 13:25:09 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 13:25:10 by akuburas         ###   ########.fr       */
+/*   Created: 2023/11/26 13:41:02 by akuburas          #+#    #+#             */
+/*   Updated: 2023/11/26 14:37:28 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_putstr(char *string)
-{
-	int	i;
+#include "ft_printf.h"
 
-	i = 0;
-	while (string[i])
+static int	ft_ptrhex(unsigned long ptr, int *length)
+{
+	const char	*hex_digits;
+
+	hex_digits = "0123456789abcdef";
+	if (ptr >= 16)
 	{
-		i += ft_putchar(string[i]);
+		ft_ptrhex(ptr / 16, length);
 	}
-	return (i);
+	(*length)++;
+	ft_putchar(hex_digits[ptr % 16]);
+	return (*length);
 }
