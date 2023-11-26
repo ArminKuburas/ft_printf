@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:40:26 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 13:23:54 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:46:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_putstr(char *string)
 	return (i);
 }
 
-static int	ft_ptrhex(t_ul ptr, int *length)
+static int	ft_ptrhex(unsigned long ptr, int *length)
 {
 	const char	*hex_digits;
 
@@ -115,7 +115,7 @@ static int	ft_puthex(unsigned int nbr, int uppercase, int *length)
 	return (*length);
 }
 
-int	my_formats(va_list args, const char format)
+static int	my_formats(va_list args, const char format)
 {
 	int	length;
 
@@ -127,7 +127,7 @@ int	my_formats(va_list args, const char format)
 	else if (format == 'p')
 	{
 		ft_putstr("0x");
-		return (2 + ft_ptrhex((t_ul)va_arg(args, void *), &length));
+		return (2 + ft_ptrhex((unsigned long)va_arg(args, void *), &length));
 	}
 	else if (format == 'x')
 		return (ft_puthex(va_arg(args, unsigned int), 0, &length));

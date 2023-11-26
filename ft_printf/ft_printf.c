@@ -6,65 +6,34 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:19:11 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 13:21:45 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:49:50 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
+static int	my_formats(va_list args, const char format)
 {
-	write (1, &c, 1);
-	return (1);
-}
+	int	length;
 
-int	ft_putnbr(int n)
-{
-	char	digit;
-	long	num;
-	int		length;
-
-	num = (long)n;
 	length = 0;
-	if (n == 0)
-	{
-		write(1, "0", 1);
-		return (1);
-	}
-	if (num < 0)
-	{
-		write(1, "-", 1);
-		num = -num;
-		length += 1;
-	}
-	if (n / 10)
-	{
-		length += 1;
-		ft_putnbr(num / 10);
-	}
-	digit = '0' + (num % 10);
-	write(1, &digit, 1);
-	return (length);
-}
-
-int	ft_putstr(char *string)
-{
-	int	i;
-
-	i = 0;
-	while (string[i])
-	{
-		i += ft_putchar(string[i]);
-	}
-	return (i);
-}
-
-int	my_formats(va_list args, const char format)
-{
 	if (format == 'd' || format == 'i')
-		return (ft_putnbr(va_arg(args, int)));
+		return (ft_putnbr(va_arg(args, int), &length));
 	else if (format == 's')
 		return (ft_putstr(va_arg(args, char *)));
+	else if (format == 'p')
+	{
+		ft_putstr("0x");
+		return (2 + ft_ptrhex((unsigned long)va_arg(args, void *), &length));
+	}
+	else if (format == 'x')
+		return (ft_puthex(va_arg(args, unsigned int), 0, &length));
+	else if (format == 'X')
+		return (ft_puthex(va_arg(args, unsigned int), 1, &length));
+	else if (format == 'u')
+		return (ft_put_u_nbr(va_arg(args, unsigned int), &length));
+	else if (format == '%')
+		return (ft_putchar('%'));
 	return (0);
 }
 
