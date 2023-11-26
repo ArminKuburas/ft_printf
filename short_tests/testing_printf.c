@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testing_printf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akuburas <akuburas%student.hive.fi>        +#+  +:+       +#+        */
+/*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:40:26 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/25 21:27:37 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:23:54 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,24 @@ int	ft_putnbr(int n, int *length)
 		ft_putnbr(num / 10, length);
 	}
 	digit = '0' + (num % 10);
+	(*length) += ft_putchar(digit);
+	return (*length);
+}
+
+int	ft_put_u_nbr(unsigned int n, int *length)
+{
+	char	digit;
+
+	if (n == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+	if (n / 10)
+	{
+		ft_put_u_nbr(n / 10, length);
+	}
+	digit = '0' + (n % 10);
 	(*length) += ft_putchar(digit);
 	return (*length);
 }
@@ -115,6 +133,10 @@ int	my_formats(va_list args, const char format)
 		return (ft_puthex(va_arg(args, unsigned int), 0, &length));
 	else if (format == 'X')
 		return (ft_puthex(va_arg(args, unsigned int), 1, &length));
+	else if (format == 'u')
+		return (ft_put_u_nbr(va_arg(args, unsigned int), &length));
+	else if (format == '%')
+		return (ft_putchar('%'));
 	return (0);
 }
 
@@ -147,9 +169,9 @@ int	main(void)
 	void *empty;
 	unsigned int	digit = 1000;
 
-	ft_printf("%p\n", empty);
-	printf("%p\n", empty);
-	ft_printf("%d\n", ft_printf("%p\n", empty));
-	printf("%d\n", printf("%p\n", empty));
+	ft_printf("%u%%\n", digit);
+	printf("%u%%\n", digit);
+	ft_printf("%d\n", ft_printf("%u%%\n", digit));
+	printf("%d\n", printf("%u%%\n", digit));
 	return (0);
 }

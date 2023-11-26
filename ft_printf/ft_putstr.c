@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:32:18 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 13:22:22 by akuburas         ###   ########.fr       */
+/*   Created: 2023/11/26 13:25:09 by akuburas          #+#    #+#             */
+/*   Updated: 2023/11/26 13:25:10 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+int	ft_putstr(char *string)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (string[i])
+	{
+		i += ft_putchar(string[i]);
+	}
+	return (i);
+}
