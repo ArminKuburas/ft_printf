@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:32:18 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 14:00:06 by akuburas         ###   ########.fr       */
+/*   Created: 2023/11/26 13:23:43 by akuburas          #+#    #+#             */
+/*   Updated: 2023/11/26 13:59:46 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
+int	ft_putnbr(int n, int *length)
+{
+	char	digit;
+	long	num;
 
-static int	ft_puthex(unsigned int nbr, int uppercase, int *length);
-static int	ft_ptrhex(unsigned long ptr, int *length);
-int			ft_putstr(char *string);
-int			ft_put_u_nbr(unsigned int n, int *length);
-int			ft_putchar(char c);
-int			ft_putnbr(int n, int *length);
-#endif
+	num = (long)n;
+	if (n == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
+	if (num < 0)
+	{
+		write(1, "-", 1);
+		num = -num;
+		(*length) += 1;
+	}
+	if (n / 10)
+	{
+		ft_putnbr(num / 10, length);
+	}
+	digit = '0' + (num % 10);
+	(*length) += ft_putchar(digit);
+	return (*length);
+}
