@@ -6,13 +6,13 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:41:02 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 14:37:28 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/26 15:45:46 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_ptrhex(unsigned long ptr, int *length)
+int	ft_ptrhex(unsigned long ptr, int *length)
 {
 	const char	*hex_digits;
 

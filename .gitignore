@@ -1,0 +1,5 @@
+#ignore object files
+object_files/
+
+#ignore library file
+libftprintf.a
