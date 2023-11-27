@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:45:24 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 15:45:36 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:38:05 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ int	ft_puthex(unsigned int nbr, int uppercase, int *length)
 	}
 	if (uppercase == 0)
 		hex_digits = "0123456789abcdef";
-	else if (uppercase == 1)
+	else
 		hex_digits = "0123456789ABCDEF";
 	if (nbr >= 16)
 	{
 		ft_puthex(nbr / 16, uppercase, length);
 	}
 	(*length)++;
-	ft_putchar(hex_digits[nbr % 16]);
+	if (ft_putchar(hex_digits[nbr % 16] == -1))
+		return (-1);
 	return (*length);
 }

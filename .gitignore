@@ -3,3 +3,6 @@ object_files/
 
 #ignore library file
 libftprintf.a
+
+#ignore test_file
+main.c
