@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:19:59 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/27 12:01:31 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:37:20 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,5 @@
 
 int	ft_putchar(char c)
 {
-	int	check;
-
-	check = write(1, &c, 1);
-	if (check == -1)
-		return (-1);
-	return (1);
+	return (write(1, &c, 1));
 }

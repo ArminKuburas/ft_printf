@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:23:43 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/26 14:38:19 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:50:32 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,21 @@ int	ft_putnbr(int n, int *length)
 	long	num;
 
 	num = (long)n;
-	if (n == 0)
-	{
-		write(1, "0", 1);
-		return (1);
-	}
 	if (num < 0)
 	{
-		write(1, "-", 1);
+		if (write(1, "-", 1) == -1)
+			return (-1);
 		num = -num;
 		(*length) += 1;
 	}
 	if (n / 10)
 	{
-		ft_putnbr(num / 10, length);
+		if (ft_putnbr(num / 10, length) == -1)
+			return (-1);
 	}
 	digit = '0' + (num % 10);
-	(*length) += ft_putchar(digit);
+	if (write(1, &digit, 1) == -1)
+		return (-1);
+	(*length)++;
 	return (*length);
 }

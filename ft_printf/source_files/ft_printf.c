@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:19:11 by akuburas          #+#    #+#             */
-/*   Updated: 2023/11/27 16:27:13 by akuburas         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:47:58 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	my_formats(va_list args, const char format)
 {
 	int	length;
-	int	check;
 
 	length = 0;
 	if (format == 'd' || format == 'i')
@@ -26,11 +25,10 @@ static int	my_formats(va_list args, const char format)
 		return (ft_putstr(va_arg(args, char *)));
 	else if (format == 'p')
 	{
-		ft_putstr("0x");
-		check = ft_ptrhex((unsigned long)va_arg(args, void *), &length);
-		if (check == -1)
+		if (ft_putstr("0x") == -1
+			|| ft_ptrhex((unsigned long)va_arg(args, void *), &length) == -1)
 			return (-1);
-		return (2 + check);
+		return (2 + length);
 	}
 	else if (format == 'x')
 		return (ft_puthex(va_arg(args, unsigned int), 0, &length));
