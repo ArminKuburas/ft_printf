@@ -6,3 +6,6 @@ libftprintf.a
 
 #ignore test_file
 main.c
+
+#ignore output files
+a.out
