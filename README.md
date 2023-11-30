@@ -58,7 +58,7 @@ And boom bobs your uncle. simple as that.
 ### Inspirations-and-thank-you
 I have to thank a lot of people who made it possible that I came as far as I have. Thank you to the wonderful bocal team at Hive Helsinki for supporting me through this journey. Thank you to so many of the amazing students there as well. It is a wonderful community that is full of such great and supportive people. Special thanks go to:
 - Carlos from Hivers 4. I will try to link you guys later but for now thank you!
-- Alex the Greek! Also from Hivers 4. Very cool guy to talk to.
+- Mike the Greek! Also from Hivers 4. Very cool guy to talk to.
 - David Horvath from Hivers 5. Same cohort. You are such an amazing dude! You help me realize the things I can't see. I learn so much from you. Thank you as always.
 - Of course my wonderful fiancee. Her love and kindness always brighten my day and push me forward.
 - To Oluwaseun from Hivers 5. You are a great friend to have and it is always nice chatting with you. Thank you for always being a good friend.
