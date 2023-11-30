@@ -2,7 +2,7 @@
 #include <string.h>
 int main(void)
 {
-	printf("%p", "");
-	printf("%d\n", printf("%p", ""));
+	printf("%#x\n", 5);
+	printf("%d\n", printf("%#x\n", 5));
 	return (0);
 }
