@@ -8,8 +8,7 @@ This repository will hold all the information I have in regards to ft_printf. Th
 - [ft_printf](#ft_printf)
 - [Description](#description)
 - [Knowledge Gained](#Knowledge-Gained)
-- [Explanation of Code](#Explanation-of-Code)
-- [Installation](#installation)
+- [Installation](#Installation)
 - [Usage](#usage)
 - [Inspirations And Thank Yous](#inspirations-and-thank-you)
 
@@ -41,4 +40,26 @@ I learnt so much during this project about so many new topics. It's hard to even
      - And through stuff like that I was able to generate object files into a seperate object file folder.
      - Or how I can use -p with mkdir to not produce an error if the directory already exists.
 8.  In general this was a very rewarding experience. In the end I am also learning this right here. Learning how to write a readme. Hopefully I can produce a decent one.
-     
+
+### Installation
+
+Very simple  installation guide here. Just use git clone https://github.com/ArminKuburas/ft_printf.git. Afterwards you can use the command make to make the library and use it as you wish.
+
+### Usage
+Here I shall try to provide some examples of how to use this minimal version of printf. It works basically the same. I will provide a small script for a main.c file you could use and compile with the library. Make sure to include a prototype of the ft_printf in there. At least I think you do.
+```bash
+main (void)
+{
+    ft_printf("String here %format_here", variable/argument_here);
+    return (0);
+}
+```
+And boom bobs your uncle. simple as that. 
+### Inspirations-and-thank-you
+I have to thank a lot of people who made it possible that I came as far as I have. Thank you to the wonderful bocal team at Hive Helsinki for supporting me through this journey. Thank you to so many of the amazing students there as well. It is a wonderful community that is full of such great and supportive people. Special thanks go to:
+- Carlos from Hivers 4. I will try to link you guys later but for now thank you!
+- Alex the Greek! Also from Hivers 4. Very cool guy to talk to.
+- David Horvath from Hivers 5. Same cohort. You are such an amazing dude! You help me realize the things I can't see. I learn so much from you. Thank you as always.
+- Of course my wonderful fiancee. Her love and kindness always brighten my day and push me forward.
+- To Oluwaseun from Hivers 5. You are a great friend to have and it is always nice chatting with you. Thank you for always being a good friend.
+- And to so so many more. Seriously. I could not be where I am today without the support of so many. I will try to include more names here later if I remember to. Thank you again anyone who reads this as well. May we all learn more.
